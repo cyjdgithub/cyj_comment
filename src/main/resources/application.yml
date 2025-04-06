@@ -1,0 +1,54 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: y_comment
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/comment
+    username: root
+    password: 123456
+
+  data:
+    redis:
+      port: 6379
+      database: 6
+      host: localhost
+      lettuce:
+        pool:
+          max-active: 10
+          max-idle: 10
+          min-idle: 1
+  jackson:
+    default-property-inclusion: non_null
+
+  rabbitmq:
+    host: localhost
+    username: admin
+    password: admin
+    virtual-host: /
+    port: 5672
+    listener:
+      simple:
+        concurrency: 10
+        max-concurrency: 10
+        prefetch: 1
+        auto-startup: true
+        default-requeue-rejected: true
+    template:
+      retry:
+        enabled: true
+        initial-interval: 1000ms
+        max-attempts: 3
+        max-interval: 10000ms
+        multiplier: 1
+
+mybatis-plus:
+  type-aliases-package: com.ncy.y_comment.entity # 别名扫描包
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+      map-underscore-to-camel-case: true
+logging:
+  level:
+    com.ncy.y_comment: debug
+    org.mybatis: debug
