@@ -1,6 +1,14 @@
 package com.ncy.y_comment.utils;
 
 public class RedisConstants {
+
+    public static final String REFRESH_TOKEN_KEY_PREFIX = "refresh_token:"; // refresh_token 存储 key
+    public static final Long ACCESS_TOKEN_TTL = 15 * 60L; // seconds
+    public static final Long REFRESH_TOKEN_TTL = 7 * 24 * 60 * 60L; // seconds
+
+    public static final String USER_NICK_NAME_PREFIX = "user_";
+
+
     public static final String LOGIN_CODE_KEY = "login:code:";
     public static final Long LOGIN_CODE_TTL = 2L;
     public static final String LOGIN_USER_KEY = "login:token:";

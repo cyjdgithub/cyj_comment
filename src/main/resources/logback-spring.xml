@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <appender name="ELK_JSON" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/app-log.json</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/app-log-%d{yyyy-MM-dd}.json</fileNamePattern>
+        </rollingPolicy>
+
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp />
+                <pattern>
+                    <pattern>
+                        {
+                        "level": "%level",
+                        "thread": "%thread",
+                        "logger": "%logger",
+                        "message": "%message",
+                        "context": "%mdc"
+                        }
+                    </pattern>
+                </pattern>
+                <stackTrace />
+            </providers>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="ELK_JSON"/>
+    </root>
+</configuration>

@@ -33,3 +33,21 @@ A high-performance **review system** built with **Spring Boot**, integrated with
 ### ✅ Flash Sale System
 - Leverages **Redis + Lua scripting** to verify flash sale eligibility
 - Uses **RabbitMQ** for asynchronous order processing, avoiding **overselling** and **duplicate orders**
+
+
+
+## Optimization 1: Login Module
+Current Implementation: Using personal user email to send verification codes via SMTP protocol.
+
+## Optimization 2: Flash Sale (Seckill) Enhancement
+High Concurrency Solution: Implemented RabbitMQ message queue to optimize flash sale order processing, significantly reducing database pressure.
+
+### Uses Lua scripts to ensure atomic execution of:
+Inventory availability check
+User order verification
+Inventory deduction
+Order creation and user event saving
+Asynchronous Processing: Leverages RabbitMQ for asynchronous handling of high-concurrency requests.
+
+## Optimization 3: Rate Limiting Implementation
+Token Bucket Algorithm: Applied to control request rates during flash sale events.
